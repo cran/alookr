@@ -50,8 +50,8 @@ summary(tmp)
 ## ----split_check, warning=FALSE-----------------------------------------------
 # list of categorical variables in the train set that contain missing levels
 nolevel_in_train <- sb %>%
-  compare_category() %>% 
-  filter(train == 0) %>% 
+  compare_target_category() %>% 
+  filter(is.na(train)) %>% 
   select(variable) %>% 
   unique() %>% 
   pull
@@ -65,8 +65,8 @@ while (length(nolevel_in_train) > 0) {
     split_by(Class)
 
   nolevel_in_train <- sb %>%
-    compare_category() %>% 
-    filter(train == 0) %>% 
+    compare_target_category() %>% 
+    filter(is.na(train)) %>% 
     select(variable) %>% 
     unique() %>% 
     pull

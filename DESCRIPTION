@@ -1,7 +1,7 @@
 Package: alookr
 Type: Package
 Title: Model Classifier for Binary Classification
-Version: 0.3.0
+Version: 0.3.2
 Authors@R: c(
   person("Choonghyun", "Ryu",, "choonghyun.ryu@gmail.com", role = c("aut", "cre"))
   )
@@ -25,6 +25,6 @@ VignetteBuilder: knitr
 RoxygenNote: 7.0.1
 Language: en-US
 NeedsCompilation: no
-Packaged: 2020-03-20 04:05:50 UTC; choonghyunryu
+Packaged: 2020-06-07 14:27:06 UTC; choonghyunryu
 Repository: CRAN
-Date/Publication: 2020-03-20 09:50:08 UTC
+Date/Publication: 2020-06-07 16:50:07 UTC

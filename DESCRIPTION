@@ -1,7 +1,7 @@
 Package: alookr
 Type: Package
 Title: Model Classifier for Binary Classification
-Version: 0.3.4
+Version: 0.3.5
 Authors@R: c(
   person("Choonghyun", "Ryu",, "choonghyun.ryu@gmail.com", role = c("aut", "cre"))
   )
@@ -14,18 +14,17 @@ Depends: R (>= 3.2.0), ggplot2 (>= 3.0.0), randomForest
 Imports: caTools, cli (>= 1.1.0), dlookr, dplyr (>= 0.7.6), future,
         ggmosaic, MASS, MLmetrics, methods, party, purrr, ROCR, ranger,
         rlang, rpart, stats, tibble, tidyr, tidyselect, unbalanced,
-        xgboost
-Suggests: knitr, ISLR, mice, mlbench
+        xgboost, glmnet
+Suggests: knitr, ISLR, mice, mlbench, rmarkdown
 Author: Choonghyun Ryu [aut, cre]
 Maintainer: Choonghyun Ryu <choonghyun.ryu@gmail.com>
 BugReports: https://github.com/choonghyunryu/alookr/issues
 License: GPL-2 | file LICENSE
 Encoding: UTF-8
-LazyData: true
 VignetteBuilder: knitr
 RoxygenNote: 7.1.1
 Language: en-US
 NeedsCompilation: no
-Packaged: 2021-02-22 04:18:57 UTC; choonghyunryu
+Packaged: 2021-11-30 23:02:43 UTC; choonghyunryu
 Repository: CRAN
-Date/Publication: 2021-02-22 14:40:02 UTC
+Date/Publication: 2021-12-01 12:10:02 UTC

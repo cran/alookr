@@ -1,8 +1,8 @@
 Package: alookr
 Type: Package
 Title: Model Classifier for Binary Classification
-Version: 0.3.91
-Date: 2025-08-23
+Version: 0.4.0
+Date: 2025-09-16
 Authors@R: c(
   person("Choonghyun", "Ryu",, "choonghyun.ryu@gmail.com", role = c("aut", "cre"))
   )
@@ -13,8 +13,8 @@ Description: A collection of tools that support data splitting, predictive model
     helping to select the best model. 
 Depends: R (>= 3.2.0), ggplot2 (>= 3.0.0), randomForest
 Imports: caTools, cli (>= 1.1.0), dlookr, dplyr (>= 0.7.6), future,
-        ggmosaic, MASS, MLmetrics, methods, parallelly, party, purrr,
-        ROCR, ranger, rlang, rpart, stats, tibble, tidyr, tidyselect,
+        MASS, MLmetrics, methods, parallelly, party, purrr, ROCR,
+        ranger, rlang, rpart, stats, tibble, tidyr, tidyselect,
         xgboost, glmnet
 Suggests: knitr, ISLR, mice, mlbench, rmarkdown, stringi
 Author: Choonghyun Ryu [aut, cre]
@@ -27,6 +27,6 @@ VignetteBuilder: knitr
 RoxygenNote: 7.2.3
 Language: en-US
 NeedsCompilation: no
-Packaged: 2025-08-24 05:01:13 UTC; choonghyunryu
+Packaged: 2025-09-16 02:28:27 UTC; choonghyunryu
 Repository: CRAN
-Date/Publication: 2025-08-24 05:30:07 UTC
+Date/Publication: 2025-09-16 02:50:02 UTC

@@ -110,7 +110,6 @@ get_cross <- function(predicted, y, positive) {
 #' In this case, the speed of visualization can be slow.
 #'
 #' @examples
-#' \donttest{
 #' library(ggplot2)
 #' library(rpart)
 #' data(kyphosis)
@@ -130,7 +129,6 @@ get_cross <- function(predicted, y, positive) {
 #' plot_cutoff(pred, kyphosis$Kyphosis, "present", type = "prob", measure = "mcc")
 #' plot_cutoff(pred, kyphosis$Kyphosis, "present", type = "prob", measure = "cross")
 #' plot_cutoff(pred, kyphosis$Kyphosis, "present", type = "prob", measure = "half")
-#' }
 #' 
 #' @import dplyr
 #' @import ggplot2
@@ -286,7 +284,6 @@ plot_cutoff <- function(predicted, y, positive, type = c("mcc", "density", "prob
 #' }
 #'
 #' @examples
-#' \donttest{
 #' library(dplyr)
 #'
 #' # Divide the train data set and the test data set.
@@ -326,7 +323,6 @@ plot_cutoff <- function(predicted, y, positive, type = c("mcc", "density", "prob
 #' # Calculate Confusion Matrix by cutoff = 0.55.
 #' performance_metric(attr(pred$predicted[[1]], "pred_prob"), test$Kyphosis,
 #'   "present", "ConfusionMatrix", cutoff = 0.55)
-#' }
 #'    
 #' @importFrom stats density
 #' @export
@@ -346,7 +342,7 @@ performance_metric <- function(pred, actual, positive,
   metric_0_1 <- c("LogLoss", "AUC", "Gini", "PRAUC", "LiftAUC", "GainAUC", "KS_Stat")
 
   if (metric %in% metric_factor) {
-    level <- levels(actual)
+    level <- levels(factor(actual))
     pred_factor <- ifelse(pred < cutoff, setdiff(level, positive), positive)
 
     ZeroOneLoss <- mean(pred_factor != actual)
@@ -503,15 +499,17 @@ run_performance <- function(model, actual = NULL) {
   }
   
   if (is.null(actual)) {
-    result <- purrr::map(seq(NROW(model)),
-                         ~future::future(performance(attr(pred$predicted[[.x]], "pred_prob"),
-                                                     attr(pred$predicted[[.x]], "actual"),
-                                                     attr(pred$predicted[[.x]], "positive")),
-                                         seed = TRUE)) %>%
+      result <- purrr::map(seq(NROW(model)),
+                           ~future::future(performance(attr(pred$predicted[[.x]], "pred_prob"),
+                                                       attr(pred$predicted[[.x]], "actual"),
+                                                       attr(pred$predicted[[.x]], "positive")),
+                                           seed = TRUE)) %>%
       tibble::tibble(step = "3.Performanced", model_id = model$model_id, target = model$target,
                      positive = model$positive, fitted_model = model$fitted_model,
                      predicted = model$predicted,
-                     performance = purrr::map(., ~future::value(.x)))
+                     performance = future::value(.))
+    # https://github.com/choonghyunryu/alookr/issues/11
+    # performance = purrr::map(., ~future::value(.x))) 
   } else {
     result <- purrr::map(seq(NROW(model)),
                          ~future::future(performance(attr(pred$predicted[[.x]], "pred_prob"),
@@ -521,7 +519,9 @@ run_performance <- function(model, actual = NULL) {
       tibble::tibble(step = "3.Performanced", model_id = model$model_id, target = model$target,
                      positive = model$positive, fitted_model = model$fitted_model,
                      predicted = model$predicted,
-                     performance = purrr::map(., ~future::value(.x)))
+                     performance = future::value(.))
+    # https://github.com/choonghyunryu/alookr/issues/11
+    # performance = purrr::map(., ~future::value(.x))) 
   }
 
   result <- result[, -1]
@@ -592,7 +592,8 @@ run_performance <- function(model, actual = NULL) {
 #' pred <- run_predict(result, test)
 #'
 #' # Compare the model performance
-#' compare_performance(pred)
+#' # This code works fine. When using the example code, uncomment it and run it.
+#' # compare_performance(pred)
 #'}
 #'
 #' @export

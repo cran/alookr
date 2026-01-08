@@ -49,10 +49,11 @@ classifier_xgboost <- function(.data, target, positive) {
   label <- .data %>% 
     select(variable = target) %>% 
     mutate(variable = ifelse(variable == positive, 1, 0)) %>% 
-    pull 
+    pull %>% 
+    as.factor()
   
-  xgboost::xgboost(data = train, label = label, eta = 1,
-                   nrounds = 3, objective = "binary:logistic", verbose = 0,
+  xgboost::xgboost(x = train, y = label, learning_rate = 1,
+                   nrounds = 3, objective = "binary:logistic", verbosity = 0,
                    eval_metric = 'error')
 }
 
@@ -156,10 +157,7 @@ classifier_dispatch <- function(model = c("logistic", "rpart", "ctree",
 #' # Run the several kinds model fitting by dplyr
 #' train %>%
 #'   run_models(target = "Kyphosis", positive = "present")
-#'
-#' # Run the logistic model fitting by dplyr
-#' train %>%
-#'   run_models(target = "Kyphosis", positive = "present", models = "logistic")
+#' 
 #' @importFrom stats density
 #' @importFrom future plan
 #' @importFrom parallelly supportsMulticore
@@ -190,8 +188,9 @@ run_models <- function(.data, target, positive,
                                                seed = TRUE)) %>%
     tibble::tibble(step = "1.Fitted", model_id = models, target = target, is_factor = flag_factor,
                    positive = positive, negative = negative,  
-                   fitted_model = purrr::map(., ~future::value(.x)))
-
+                   fitted_model = future::value(.))
+                   # https://github.com/choonghyunryu/alookr/issues/11
+                   # fitted_model = purrr::map(., ~future::value(.x)))
   result <- result[, -1]
 
   class(result) <- append("model_df", class(result))
@@ -220,9 +219,9 @@ predictor <- function(model, .data, target, positive, negative, is_factor,
                  randomForest.formula = predict(model, newdata = .data, 
                                                 type = "prob")[, positive],
                  ranger = predict(model, data = .data)$predictions[, positive],
-                 xgb.Booster = predict(model, newdata = .data %>% 
-                                         select(model$feature_names) %>%
-                                         data.matrix),
+                 xgboost = predict(model, newdata = .data %>% 
+                                     select(where(is.numeric)) %>%
+                                     data.matrix),
                  lognet = {pred <- predict(
                    model, newx = .data %>% 
                      select(matches(model$beta %>% row.names())) %>% 
@@ -313,14 +312,10 @@ predictor <- function(model, .data, target, positive, negative, is_factor,
 #' result <- run_models(.data = train, target = "Kyphosis", positive = "present")
 #' result
 #'
-#' # Predict the model.
-#' pred <- run_predict(result, test)
-#' pred
-#'
 #' # Run the several kinds model predict by dplyr
 #' result %>%
 #'   run_predict(test)
-#'
+#' 
 #' @importFrom stats density
 #' @importFrom future plan
 #' @importFrom parallelly supportsMulticore
@@ -346,7 +341,9 @@ run_predict <- function(model, .data, cutoff = 0.5) {
                                                  cutoff), seed = TRUE)) %>%
     tibble::tibble(step = "2.Predicted", model_id = model$model_id, target = model$target,
                    is_factor = model$is_factor, positive = model$positive, negative = model$negative, 
-                   fitted_model = model$fitted_model, predicted = purrr::map(., ~future::value(.x)))
+                   fitted_model = model$fitted_model, predicted = future::value(.))
+                   # https://github.com/choonghyunryu/alookr/issues/11
+                   # fitted_model = model$fitted_model, predicted = purrr::map(., ~future::value(.x)))
 
   result <- result[, -1]
 

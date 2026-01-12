@@ -306,23 +306,27 @@ plot_cutoff <- function(predicted, y, positive, type = c("mcc", "density", "prob
 #' train <- train %>%
 #'   cleanse
 #'
-#' # Run the model fitting.
-#' result <- run_models(.data = train, target = "Kyphosis", positive = "present")
-#' result
+#' # ---------------------------------------------------------------------------
+#' # Starting with the examples below, uncomment them and run them. ------------
+#' # ---------------------------------------------------------------------------
+#' 
+#' ## Run the model fitting.
+#' # result <- run_models(.data = train, target = "Kyphosis", positive = "present")
+#' # result
 #'
-#' # Predict the model.
-#' pred <- run_predict(result, test)
-#' pred
+#' ## Predict the model.
+#' # pred <- run_predict(result, test)
+#' # pred
 #'
-#' # Calculate Accuracy.
-#' performance_metric(attr(pred$predicted[[1]], "pred_prob"), test$Kyphosis,
-#'   "present", "Accuracy")
-#' # Calculate Confusion Matrix.
-#' performance_metric(attr(pred$predicted[[1]], "pred_prob"), test$Kyphosis,
-#'   "present", "ConfusionMatrix")
-#' # Calculate Confusion Matrix by cutoff = 0.55.
-#' performance_metric(attr(pred$predicted[[1]], "pred_prob"), test$Kyphosis,
-#'   "present", "ConfusionMatrix", cutoff = 0.55)
+#' ## Calculate Accuracy.
+#' # performance_metric(attr(pred$predicted[[1]], "pred_prob"), test$Kyphosis,
+#' #   "present", "Accuracy")
+#' ## Calculate Confusion Matrix.
+#' # performance_metric(attr(pred$predicted[[1]], "pred_prob"), test$Kyphosis,
+#' #   "present", "ConfusionMatrix")
+#' ## Calculate Confusion Matrix by cutoff = 0.55.
+#' # performance_metric(attr(pred$predicted[[1]], "pred_prob"), test$Kyphosis,
+#' #   "present", "ConfusionMatrix", cutoff = 0.55)
 #'    
 #' @importFrom stats density
 #' @export
@@ -445,30 +449,34 @@ performance_metric <- function(pred, actual, positive,
 #' train <- train %>%
 #'   cleanse
 #'
-#' # Run the model fitting.
-#' result <- run_models(.data = train, target = "Kyphosis", positive = "present")
-#' result
-#'
-#' # Predict the model. (Case 1)
-#' pred <- run_predict(result, test)
-#' pred
-#'
-#' # Calculate performace metrics. (Case 1)
-#' perf <- run_performance(pred)
-#' perf
-#' perf$performance
-#'
-#' # Predict the model. (Case 2)
-#' pred <- run_predict(result, test[, -1])
-#' pred
-#'
-#' # Calculate performace metrics. (Case 2)
-#' perf <- run_performance(pred, pull(test[, 1]))
-#' perf
-#' perf$performance
+#' # ---------------------------------------------------------------------------
+#' # Starting with the examples below, uncomment them and run them. ------------
+#' # ---------------------------------------------------------------------------
 #' 
-#' # Convert to matrix for compare performace.
-#' sapply(perf$performance, "c")
+#' ## Run the model fitting.
+#' # result <- run_models(.data = train, target = "Kyphosis", positive = "present")
+#' # result
+#'
+#' ## Predict the model. (Case 1)
+#' # pred <- run_predict(result, test)
+#' # pred
+#'
+#' ## Calculate performace metrics. (Case 1)
+#' # perf <- run_performance(pred)
+#' # perf
+#' # perf$performance
+#'
+#' ## Predict the model. (Case 2)
+#' # pred <- run_predict(result, test[, -1])
+#' # pred
+#'
+#' ## Calculate performace metrics. (Case 2)
+#' # perf <- run_performance(pred, pull(test[, 1]))
+#' # perf
+#' # perf$performance
+#' 
+#' ## Convert to matrix for compare performace.
+#' # sapply(perf$performance, "c")
 #' }
 #' 
 #' @importFrom stats density
@@ -584,12 +592,16 @@ run_performance <- function(model, actual = NULL) {
 #' # Cleaning the set.
 #' train <- train %>%
 #'   cleanse
-#'
+#' 
+#' # ---------------------------------------------------------------------------
+#' # Starting with the examples below, uncomment them and run them. ------------
+#' # ---------------------------------------------------------------------------
+#' 
 #' # Run the model fitting.
-#' result <- run_models(.data = train, target = "Kyphosis", positive = "present")
+#' # result <- run_models(.data = train, target = "Kyphosis", positive = "present")
 #'
 #' # Predict the model.
-#' pred <- run_predict(result, test)
+#' # pred <- run_predict(result, test)
 #'
 #' # Compare the model performance
 #' # This code works fine. When using the example code, uncomment it and run it.
@@ -671,14 +683,18 @@ compare_performance <- function(model) {
 #' train <- train %>%
 #'   cleanse
 #'
-#' # Run the model fitting.
-#' result <- run_models(.data = train, target = "Kyphosis", positive = "present")
+#' # ---------------------------------------------------------------------------
+#' # Starting with the examples below, uncomment them and run them. ------------
+#' # ---------------------------------------------------------------------------
+#' 
+#' ## Run the model fitting.
+#' # result <- run_models(.data = train, target = "Kyphosis", positive = "present")
 #'
-#' # Predict the model.
-#' pred <- run_predict(result, test)
+#' ## Predict the model.
+#' # pred <- run_predict(result, test)
 #'
-#' # Plot ROC curve
-#' plot_performance(pred)
+#' ## Plot ROC curve
+#' # plot_performance(pred)
 #' }
 #' 
 #' @import ggplot2

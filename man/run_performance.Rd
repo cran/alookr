@@ -73,30 +73,34 @@ train <- sb \%>\%
 train <- train \%>\%
   cleanse
 
-# Run the model fitting.
-result <- run_models(.data = train, target = "Kyphosis", positive = "present")
-result
+# ---------------------------------------------------------------------------
+# Starting with the examples below, uncomment them and run them. ------------
+# ---------------------------------------------------------------------------
 
-# Predict the model. (Case 1)
-pred <- run_predict(result, test)
-pred
+## Run the model fitting.
+# result <- run_models(.data = train, target = "Kyphosis", positive = "present")
+# result
 
-# Calculate performace metrics. (Case 1)
-perf <- run_performance(pred)
-perf
-perf$performance
+## Predict the model. (Case 1)
+# pred <- run_predict(result, test)
+# pred
 
-# Predict the model. (Case 2)
-pred <- run_predict(result, test[, -1])
-pred
+## Calculate performace metrics. (Case 1)
+# perf <- run_performance(pred)
+# perf
+# perf$performance
 
-# Calculate performace metrics. (Case 2)
-perf <- run_performance(pred, pull(test[, 1]))
-perf
-perf$performance
+## Predict the model. (Case 2)
+# pred <- run_predict(result, test[, -1])
+# pred
 
-# Convert to matrix for compare performace.
-sapply(perf$performance, "c")
+## Calculate performace metrics. (Case 2)
+# perf <- run_performance(pred, pull(test[, 1]))
+# perf
+# perf$performance
+
+## Convert to matrix for compare performace.
+# sapply(perf$performance, "c")
 }
 
 }

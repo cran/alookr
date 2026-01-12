@@ -42,14 +42,18 @@ train <- sb \%>\%
 train <- train \%>\%
   cleanse
 
-# Run the model fitting.
-result <- run_models(.data = train, target = "Kyphosis", positive = "present")
+# ---------------------------------------------------------------------------
+# Starting with the examples below, uncomment them and run them. ------------
+# ---------------------------------------------------------------------------
 
-# Predict the model.
-pred <- run_predict(result, test)
+## Run the model fitting.
+# result <- run_models(.data = train, target = "Kyphosis", positive = "present")
 
-# Plot ROC curve
-plot_performance(pred)
+## Predict the model.
+# pred <- run_predict(result, test)
+
+## Plot ROC curve
+# plot_performance(pred)
 }
 
 }

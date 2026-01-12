@@ -69,16 +69,16 @@ train <- sb \%>\%
 train <- train \%>\%
   cleanse
 
-# Run the model fitting.
-result <- run_models(.data = train, target = "Kyphosis", positive = "present")
-result
+# ---------------------------------------------------------------------------
+# Starting with the examples below, uncomment them and run them. ------------
+# ---------------------------------------------------------------------------
 
-# Predict the model.
-pred <- run_predict(result, test)
-pred
+## Run the model fitting.
+# result <- run_models(.data = train, target = "Kyphosis", positive = "present")
+# result
 
-# Run the several kinds model predict by dplyr
-result \%>\%
-  run_predict(test)
+## Run the several kinds model predict by dplyr
+# result \%>\%
+#   run_predict(test)
 
 }

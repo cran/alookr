@@ -59,7 +59,6 @@ The cutoff argument applies only if the metric argument is "ZeroOneLoss", "Accur
 "Sensitivity", "Specificity", "F1_Score", "Fbeta_Score", "ConfusionMatrix".
 }
 \examples{
-\donttest{
 library(dplyr)
 
 # Divide the train data set and the test data set.
@@ -82,23 +81,26 @@ train <- sb \%>\%
 train <- train \%>\%
   cleanse
 
-# Run the model fitting.
-result <- run_models(.data = train, target = "Kyphosis", positive = "present")
-result
+# ---------------------------------------------------------------------------
+# Starting with the examples below, uncomment them and run them. ------------
+# ---------------------------------------------------------------------------
 
-# Predict the model.
-pred <- run_predict(result, test)
-pred
+## Run the model fitting.
+# result <- run_models(.data = train, target = "Kyphosis", positive = "present")
+# result
 
-# Calculate Accuracy.
-performance_metric(attr(pred$predicted[[1]], "pred_prob"), test$Kyphosis,
-  "present", "Accuracy")
-# Calculate Confusion Matrix.
-performance_metric(attr(pred$predicted[[1]], "pred_prob"), test$Kyphosis,
-  "present", "ConfusionMatrix")
-# Calculate Confusion Matrix by cutoff = 0.55.
-performance_metric(attr(pred$predicted[[1]], "pred_prob"), test$Kyphosis,
-  "present", "ConfusionMatrix", cutoff = 0.55)
-}
+## Predict the model.
+# pred <- run_predict(result, test)
+# pred
+
+## Calculate Accuracy.
+# performance_metric(attr(pred$predicted[[1]], "pred_prob"), test$Kyphosis,
+#   "present", "Accuracy")
+## Calculate Confusion Matrix.
+# performance_metric(attr(pred$predicted[[1]], "pred_prob"), test$Kyphosis,
+#   "present", "ConfusionMatrix")
+## Calculate Confusion Matrix by cutoff = 0.55.
+# performance_metric(attr(pred$predicted[[1]], "pred_prob"), test$Kyphosis,
+#   "present", "ConfusionMatrix", cutoff = 0.55)
    
 }

@@ -150,13 +150,17 @@ classifier_dispatch <- function(model = c("logistic", "rpart", "ctree",
 #' train <- train %>%
 #'   cleanse
 #'
-#' # Run the model fitting.
-#' result <- run_models(.data = train, target = "Kyphosis", positive = "present")
-#' result
+#' # ---------------------------------------------------------------------------
+#' # Starting with the examples below, uncomment them and run them. ------------
+#' # ---------------------------------------------------------------------------
+#' 
+#' ## Run the model fitting.
+#' # result <- run_models(.data = train, target = "Kyphosis", positive = "present")
+#' # result
 #'
-#' # Run the several kinds model fitting by dplyr
-#' train %>%
-#'   run_models(target = "Kyphosis", positive = "present")
+#' ## Run the several kinds model fitting by dplyr
+#' # train %>%
+#' #   run_models(target = "Kyphosis", positive = "present")
 #' 
 #' @importFrom stats density
 #' @importFrom future plan
@@ -308,13 +312,17 @@ predictor <- function(model, .data, target, positive, negative, is_factor,
 #' train <- train %>%
 #'   cleanse
 #'
-#' # Run the model fitting.
-#' result <- run_models(.data = train, target = "Kyphosis", positive = "present")
-#' result
+#' # ---------------------------------------------------------------------------
+#' # Starting with the examples below, uncomment them and run them. ------------
+#' # ---------------------------------------------------------------------------
+#' 
+#' ## Run the model fitting.
+#' # result <- run_models(.data = train, target = "Kyphosis", positive = "present")
+#' # result
 #'
-#' # Run the several kinds model predict by dplyr
-#' result %>%
-#'   run_predict(test)
+#' ## Run the several kinds model predict by dplyr
+#' # result %>%
+#' #   run_predict(test)
 #' 
 #' @importFrom stats density
 #' @importFrom future plan

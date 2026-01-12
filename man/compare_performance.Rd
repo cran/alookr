@@ -62,11 +62,15 @@ train <- sb \%>\%
 train <- train \%>\%
   cleanse
 
+# ---------------------------------------------------------------------------
+# Starting with the examples below, uncomment them and run them. ------------
+# ---------------------------------------------------------------------------
+
 # Run the model fitting.
-result <- run_models(.data = train, target = "Kyphosis", positive = "present")
+# result <- run_models(.data = train, target = "Kyphosis", positive = "present")
 
 # Predict the model.
-pred <- run_predict(result, test)
+# pred <- run_predict(result, test)
 
 # Compare the model performance
 # This code works fine. When using the example code, uncomment it and run it.

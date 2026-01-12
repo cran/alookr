@@ -8,8 +8,7 @@ run_models(
   .data,
   target,
   positive,
-  models = c("logistic", "rpart", "ctree", "randomForest", "ranger", "xgboost",
-    "lasso")
+  models = c("logistic", "rpart", "ctree", "randomForest", "ranger", "xgboost", "lasso")
 )
 }
 \arguments{
@@ -82,15 +81,16 @@ train <- sb \%>\%
 train <- train \%>\%
   cleanse
 
-# Run the model fitting.
-result <- run_models(.data = train, target = "Kyphosis", positive = "present")
-result
+# ---------------------------------------------------------------------------
+# Starting with the examples below, uncomment them and run them. ------------
+# ---------------------------------------------------------------------------
 
-# Run the several kinds model fitting by dplyr
-train \%>\%
-  run_models(target = "Kyphosis", positive = "present")
+## Run the model fitting.
+# result <- run_models(.data = train, target = "Kyphosis", positive = "present")
+# result
 
-# Run the logistic model fitting by dplyr
-train \%>\%
-  run_models(target = "Kyphosis", positive = "present", models = "logistic")
+## Run the several kinds model fitting by dplyr
+# train \%>\%
+#   run_models(target = "Kyphosis", positive = "present")
+
 }
